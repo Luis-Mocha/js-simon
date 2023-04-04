@@ -1,8 +1,12 @@
 const numDiv = document.querySelector('#numDiv');
 const startBtn = document.querySelector('#startBtn');
-let numArray = [];
+
+const form = document.querySelector('form');
+// const formBtn = document.querySelector('#formBtn');
+
 
 //generoi 5 numeri causali
+let numArray = [];
 for (let i = 0; i < 5; i++) {
     numArray.push(randomNUmber(10, 99));
     console.log(numArray);
@@ -10,7 +14,8 @@ for (let i = 0; i < 5; i++) {
     numDiv.innerHTML += `<span>${numArray[i]}</span>`
 }
 
-
+let control = true;
+console.log(control)
 
 //Al play nascondo il tasto e mostro i numeri
 startBtn.addEventListener('click', function() {
@@ -19,13 +24,35 @@ startBtn.addEventListener('click', function() {
     showDiv(numDiv);
 
     setTimeout(function() {
-        hideDiv(numDiv)
+        hideDiv(numDiv);
+        showDiv(form)
+        control = false;
     }, 5000);
-    
-});
-    
 
-console.log(numArray);
+});
+// setInterval(function() {
+//     if (control) {
+//         console.log('helooo');
+//     }
+//     else {
+//         console.log('nono')
+//     }
+// }, 1000)
+
+let userArray = [];
+form.addEventListener('submit', function(invioForm) {
+    invioForm.preventDefault();
+
+    const input1 = parseInt(document.querySelector('#input1').value);
+    const input2 = parseInt(document.querySelector('#input2').value);
+    const input3 = parseInt(document.querySelector('#input3').value);
+    const input4 = parseInt(document.querySelector('#input4').value);
+    const input5 = parseInt(document.querySelector('#input5').value);
+    
+    console.log(input1, input2,input3, input4, input5);
+    userArray.push(input1, input2,input3, input4, input5);
+    console.log(userArray);
+});
 
 
 
