@@ -9,13 +9,12 @@ const form = document.querySelector('form');
 let numArray = [];
 for (let i = 0; i < 5; i++) {
     numArray.push(randomNUmber(10, 99));
-    console.log(numArray);
 
     numDiv.innerHTML += `<span>${numArray[i]}</span>`
 }
-
-let control = true;
-console.log(control)
+console.log(numArray);
+// let control = true;
+// console.log(control)
 
 //Al play nascondo il tasto e mostro i numeri
 startBtn.addEventListener('click', function() {
@@ -27,7 +26,7 @@ startBtn.addEventListener('click', function() {
         hideDiv(numDiv);
         showDiv(form)
         control = false;
-    }, 5000);
+    }, 1000);
 
 });
 // setInterval(function() {
@@ -42,6 +41,7 @@ startBtn.addEventListener('click', function() {
 let userArray = [];
 form.addEventListener('submit', function(invioForm) {
     invioForm.preventDefault();
+    userArray = []
 
     const input1 = parseInt(document.querySelector('#input1').value);
     const input2 = parseInt(document.querySelector('#input2').value);
@@ -49,9 +49,30 @@ form.addEventListener('submit', function(invioForm) {
     const input4 = parseInt(document.querySelector('#input4').value);
     const input5 = parseInt(document.querySelector('#input5').value);
     
-    console.log(input1, input2,input3, input4, input5);
     userArray.push(input1, input2,input3, input4, input5);
     console.log(userArray);
+
+    // riordino i due array da confrontare
+    let numArraySorted = [];
+    let userArraySorted = [];
+
+    for (let i = 0; i < 5; i++) {
+        numArraySorted.push(numArray[i])
+        userArraySorted.push(userArray[i])
+    };
+
+    numArraySorted.sort();
+    userArraySorted.sort();
+    console.log(numArraySorted, userArraySorted);
+
+    if (numArray === userArray) {
+        console.log('perfetto!');
+    } else if (numArraySorted === userArraySorted){
+        console.log('quasi!'); 
+    } else {
+       console.log('nope')
+    }
+
 });
 
 
