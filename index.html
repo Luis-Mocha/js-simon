@@ -9,10 +9,10 @@
     <!-- link bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 </head>
-<body>
+<body style="background-color: rgb(33,37,41); color: white;">
     <main>
-        <h1 class="text-center">
-            Ricorda i numeri
+        <h1 class="text-center border-bottom py-3 text-danger">
+            Ricorda i numeri!
         </h1>
 
         <button id="startBtn" class="mx-auto d-block my-3 text-uppercase">
@@ -25,7 +25,7 @@
 
         <form class="d-none text-center mt-5">
             <p>
-                Riscrivi i numeri che hai appena visto!
+                Riscrivi i numeri che hai appena visto nell'ordine corretto!
             </p>
             <div id="inputDiv" class="d-flex justify-content-evenly">
                 <input type="number" name="inputNumber" id="input1" min="10" max="99">
@@ -44,6 +44,10 @@
             <div id="userNumbers"></div>
             <div id="finalResult" class="my-3"></div>
         </div>
+
+        <button id="refreshBtn" class="d-block my-3 text-uppercase position-absolute bottom-0 end-0 me-3 btn btn btn-secondary btn-sm d-none">
+            Riprova
+        </button>
     </main>
     
 

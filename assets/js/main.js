@@ -1,8 +1,7 @@
 const numDiv = document.querySelector('#numDiv');
 const startBtn = document.querySelector('#startBtn');
-
 const form = document.querySelector('form');
-// const formBtn = document.querySelector('#formBtn');
+const refresBtn = document.querySelector('#refreshBtn');
 
 
 //generoi 5 numeri causali
@@ -13,8 +12,6 @@ for (let i = 0; i < 5; i++) {
     numDiv.innerHTML += `<span>${numArray[i]}</span>`
 }
 console.log(numArray);
-// let control = true;
-// console.log(control)
 
 //Al play nascondo il tasto e mostro i numeri
 startBtn.addEventListener('click', function() {
@@ -25,20 +22,17 @@ startBtn.addEventListener('click', function() {
     setTimeout(function() {
         hideDiv(numDiv);
         showDiv(form)
-        control = false;
-    }, 1000);
-
+        showDiv(refresBtn);
+    }, 2000);
 });
-// setInterval(function() {
-//     if (control) {
-//         console.log('helooo');
-//     }
-//     else {
-//         console.log('nono')
-//     }
-// }, 1000)
+
 
 let userArray = [];
+let corrette = 0;
+let sbagliate = 0;
+let correctNumbers = [];
+let correctPositions = [];
+
 form.addEventListener('submit', function(invioForm) {
     invioForm.preventDefault();
     userArray = []
@@ -84,8 +78,8 @@ form.addEventListener('submit', function(invioForm) {
     let userNumbers = document.querySelector('#userNumbers')
     let finalResult = document.querySelector('#finalResult')
 
-    originalNumbers.innerHTML =`<h2>${numArray}</h2>` 
-    userNumbers.innerHTML = `<h2>${userArray}</h2>` 
+    originalNumbers.innerHTML =`<h2>${numArray.join(' - ')}</h2>` 
+    userNumbers.innerHTML = `<h2>${userArray.join(' - ')}</h2>` 
 
     if (corrette === 5) {
         finalResult.innerHTML = '<h3>Hai indovinato ogni numero un posizione corretta!</h3>'
@@ -95,17 +89,16 @@ form.addEventListener('submit', function(invioForm) {
     }
     else {
         finalResult.innerHTML = `
-        <h3>Numeri corretti:${corrette}.
+        <h3>Numeri corretti: ${corrette}.
         <br>
-        Hai indovinato i numeri in posizione ${correctPositions}, cioè ${correctNumbers}.</h3>`
+        Hai indovinato ${correctNumbers.join(' - ')}, in posizione ${correctPositions}.</h3>`
     }
-   
-    
 });
-let corrette = 0;
-let sbagliate = 0;
-let correctNumbers = [];
-let correctPositions = [];
+
+//tasto per refreshare
+refresBtn.addEventListener('click', function() {
+    location.reload()
+});
 
 
 
