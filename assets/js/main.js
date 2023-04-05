@@ -52,6 +52,8 @@ form.addEventListener('submit', function(invioForm) {
     userArray.push(input1, input2,input3, input4, input5);
     console.log(userArray);
 
+    hideDiv(form);
+
     // riordino i due array da confrontare
     let numArraySorted = [];
     let userArraySorted = [];
@@ -65,15 +67,45 @@ form.addEventListener('submit', function(invioForm) {
     userArraySorted.sort();
     console.log(numArraySorted, userArraySorted);
 
-    if (numArray === userArray) {
-        console.log('perfetto!');
-    } else if (numArraySorted === userArraySorted){
-        console.log('quasi!'); 
-    } else {
-       console.log('nope')
+    
+    for (let i = 0; i < 5; i++) {
+        if (numArray[i] === userArray[i]) {
+            corrette++;
+            correctNumbers.push(userArray[i])
+            correctPositions.push(i+1)
+        }
+        else {
+            sbagliate++
+        }
+        console.log(corrette, sbagliate);
     }
 
+    let originalNumbers = document.querySelector('#originalNumbers')
+    let userNumbers = document.querySelector('#userNumbers')
+    let finalResult = document.querySelector('#finalResult')
+
+    originalNumbers.innerHTML =`<h2>${numArray}</h2>` 
+    userNumbers.innerHTML = `<h2>${userArray}</h2>` 
+
+    if (corrette === 5) {
+        finalResult.innerHTML = '<h3>Hai indovinato ogni numero un posizione corretta!</h3>'
+    }
+    else if (corrette === 0) {
+        finalResult.innerHTML = '<h3>Non ne hai indovinato neanche uno :(</h3>'
+    }
+    else {
+        finalResult.innerHTML = `
+        <h3>Numeri corretti:${corrette}.
+        <br>
+        Hai indovinato i numeri in posizione ${correctPositions}, cioè ${correctNumbers}.</h3>`
+    }
+   
+    
 });
+let corrette = 0;
+let sbagliate = 0;
+let correctNumbers = [];
+let correctPositions = [];
 
 
 
