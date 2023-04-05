@@ -91,7 +91,7 @@ form.addEventListener('submit', function(invioForm) {
         finalResult.innerHTML = `
         <h3>Numeri corretti: ${corrette}.
         <br>
-        Hai indovinato ${correctNumbers.join(' - ')}, in posizione ${correctPositions}.</h3>`
+        Hai indovinato ${correctNumbers.join(' - ')}, in posizione ${correctPositions.join(', ')}.</h3>`
     }
 });
 
