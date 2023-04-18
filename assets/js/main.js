@@ -29,7 +29,6 @@ startBtn.addEventListener('click', function() {
 
 let userArray = [];
 let corrette = 0;
-let sbagliate = 0;
 let correctNumbers = [];
 let correctPositions = [];
 
@@ -61,18 +60,18 @@ form.addEventListener('submit', function(invioForm) {
     userArraySorted.sort();
     console.log(numArraySorted, userArraySorted);
 
-    
     for (let i = 0; i < 5; i++) {
-        if (numArray[i] === userArray[i]) {
+        if (numArraySorted.includes(userArraySorted[i])) {
             corrette++;
+        }
+        
+        if (numArray[i] === userArray[i]) {
             correctNumbers.push(userArray[i])
             correctPositions.push(i+1)
         }
-        else {
-            sbagliate++
-        }
-        console.log(corrette, sbagliate);
     }
+    console.log(corrette);
+    console.log(correctNumbers, correctPositions);
 
     let originalNumbers = document.querySelector('#originalNumbers')
     let userNumbers = document.querySelector('#userNumbers')
@@ -81,7 +80,7 @@ form.addEventListener('submit', function(invioForm) {
     originalNumbers.innerHTML =`<h2>${numArray.join(' - ')}</h2>` 
     userNumbers.innerHTML = `<h2>${userArray.join(' - ')}</h2>` 
 
-    if (corrette === 5) {
+    if (corrette === 5 && correctNumbers.length == 5) {
         finalResult.innerHTML = '<h3>Hai indovinato ogni numero un posizione corretta!</h3>'
     }
     else if (corrette === 0) {
@@ -89,11 +88,12 @@ form.addEventListener('submit', function(invioForm) {
     }
     else {
         finalResult.innerHTML = `
-        <h3>Numeri corretti: ${corrette}.
+        <h3>Numeri corretti: ${corrette}!
         <br>
-        Hai indovinato ${correctNumbers.join(' - ')}, in posizione ${correctPositions.join(', ')}.</h3>`
-    }
+        Hai indovinato in posizione perfetta solo ${correctNumbers.join(' - ')}. Posizione rispettiva: ${correctPositions.join(', ')}.</h3>`
+    };
 });
+
 
 //tasto per refreshare
 refresBtn.addEventListener('click', function() {
@@ -101,15 +101,13 @@ refresBtn.addEventListener('click', function() {
 });
 
 
-
-/* my functions */
+/* ---- my functions ---- */
 function showDiv(divHtml) {
     divHtml.classList.remove('d-none');
 };
 function hideDiv(divHtml) {
     divHtml.classList.add('d-none');
 };
-
 
 function randomNUmber(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
